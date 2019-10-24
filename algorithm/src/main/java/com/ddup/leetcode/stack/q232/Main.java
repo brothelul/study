@@ -1,7 +1,7 @@
 package com.ddup.leetcode.stack.q232;
 
 /**
- * <p> 实现栈 </p>
+ * <p> 实现队列 </p>
  * push(x) -- 将一个元素放入队列的尾部。
  * pop() -- 从队列首部移除元素。
  * peek() -- 返回队列首部的元素。
