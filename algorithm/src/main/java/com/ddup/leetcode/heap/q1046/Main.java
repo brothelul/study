@@ -19,6 +19,6 @@ public class Main {
     }
 
     public static int lastStoneWeight(int[] stones) {
-
+return 0;
     }
 }

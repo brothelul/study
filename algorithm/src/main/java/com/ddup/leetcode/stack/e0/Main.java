@@ -8,17 +8,25 @@ package com.ddup.leetcode.stack.e0;
  */
 public class Main {
     public static void main(String[] args) {
-        Integer[] values = new Integer[] {1, null, 3, 4, 5, null, 6, 7};
+        //Integer[] values = new Integer[] {1, null, 3, 4, 5, null, 6, 7};
+        TreeNode pTreeNode = new TreeNode(1);
+        TreeNode treeNode = new TreeNode(3);
+        pTreeNode.left = treeNode;
+        treeNode = new TreeNode(2);
+        pTreeNode.left = treeNode;
+        treeNode = null;
+        System.out.println(pTreeNode.left.val);
     }
 
     public TreeNode initTreeNode(Integer[] values) {
+
         return null;
     }
 
 }
 
 class TreeNode {
-    int val;
+    Integer val;
     TreeNode left;
     TreeNode right;
     TreeNode parent;
