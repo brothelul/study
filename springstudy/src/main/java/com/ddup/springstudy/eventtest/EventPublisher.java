@@ -3,7 +3,6 @@ package com.ddup.springstudy.eventtest;
 import com.ddup.springstudy.domain.EventDTO;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.boot.context.event.ApplicationStartingEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ApplicationEventMulticaster;
@@ -23,9 +22,8 @@ import java.util.concurrent.Executors;
  * @date 2019/11/8
  */
 @Component
-public class EventPublisher implements ApplicationListener<ApplicationStartingEvent> {
-    @Resource
-    ApplicationEventPublisher applicationEventPublisher;
+public class EventPublisher implements ApplicationListener<ApplicationReadyEvent> {
+
     @Resource
     SimpleApplicationEventMulticaster applicationEventMulticaster;
 
@@ -35,9 +33,10 @@ public class EventPublisher implements ApplicationListener<ApplicationStartingEv
     }
 
 
+    @Resource
+    ApplicationEventPublisher applicationEventPublisher;
 
     public void sendEvent() {
-        System.out.println(1111);
         EventDTO eventDTO = new EventDTO();
         applicationEventPublisher.publishEvent(eventDTO);
     }
@@ -47,7 +46,7 @@ public class EventPublisher implements ApplicationListener<ApplicationStartingEv
         System.out.println( Thread.currentThread().getName()+" "+eventDTO);
     }
 
-    public void onApplicationEvent(ApplicationStartingEvent applicationReadyEvent) {
+    public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
         sendEvent();
     }
 }
