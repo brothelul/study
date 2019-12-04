@@ -1,14 +1,11 @@
 package com.ddup.springstudy.eventtest;
 
 import com.ddup.springstudy.domain.EventDTO;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ApplicationEventMulticaster;
 import org.springframework.context.event.EventListener;
 import org.springframework.context.event.SimpleApplicationEventMulticaster;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
