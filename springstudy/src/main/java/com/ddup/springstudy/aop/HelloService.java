@@ -8,4 +8,6 @@ package com.ddup.springstudy.aop;
  */
 public interface HelloService {
     void sayHello();
+
+    void sayWa();
 }

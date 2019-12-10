@@ -13,4 +13,8 @@ public class HelloServiceImpl implements HelloService {
     public void sayHello() {
         System.out.println("hell0");
     }
+
+    public void sayWa() {
+        System.out.println("wa");
+    }
 }

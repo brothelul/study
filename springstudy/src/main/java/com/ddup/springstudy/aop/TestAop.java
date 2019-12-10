@@ -17,5 +17,9 @@ public class TestAop {
         HelloService helloService = annotationConfigApplicationContext.getBean(HelloService.class);
         System.out.println(helloService.getClass());
         helloService.sayHello();
+
+        HelloService helloService1 = annotationConfigApplicationContext.getBean(HelloService.class);
+        System.out.println(helloService1.getClass());
+        helloService1.sayWa();
     }
 }
