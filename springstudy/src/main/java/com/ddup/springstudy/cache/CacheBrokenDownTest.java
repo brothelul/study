@@ -11,7 +11,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.LockSupport;
 
 /**
  * <p> 缓存击穿例子 </p>
@@ -79,5 +78,6 @@ public class CacheBrokenDownTest {
         }
         countDownLatch.await();
         System.out.println("DB次数:" + cacheBrokenDownTest.dbCount.get() + " Cache次数:" + cacheBrokenDownTest.cacheCount.get());
+        executor.shutdown();
     }
 }
