@@ -6,6 +6,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 /**
  * <p> </p>
@@ -23,9 +24,11 @@ public class EventTest {
 
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
-        applicationContext.scan("com.ddup");
-        applicationContext.refresh();
-        System.out.println(applicationContext.getBean("eventTest"));
+//        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+//        applicationContext.scan("com.ddup");
+//        applicationContext.refresh();
+//        System.out.println(applicationContext.getBean("eventTest"));
+
+        System.out.println(StringUtils.replace("aaa.xml", ".", "_addd-aaaa."));
     }
 }

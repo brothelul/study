@@ -2,6 +2,7 @@ package com.ddup.springstudy.eventtest;
 
 import com.ddup.springstudy.domain.EventDTO;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.EventListener;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.concurrent.Executors;
 
 /**
@@ -19,6 +21,7 @@ import java.util.concurrent.Executors;
  * @date 2019/11/8
  */
 @Component
+@ConfigurationProperties(prefix = "test")
 public class EventPublisher implements ApplicationListener<ApplicationReadyEvent> {
 
     @Resource
@@ -38,12 +41,20 @@ public class EventPublisher implements ApplicationListener<ApplicationReadyEvent
         applicationEventPublisher.publishEvent(eventDTO);
     }
 
+    private List<EventDTO> eventDTOS;
+
+
+    public void setEventDTOS(List<EventDTO> eventDTOS) {
+        this.eventDTOS = eventDTOS;
+    }
+
     @EventListener
     public void listenEvent(EventDTO eventDTO) {
         System.out.println( Thread.currentThread().getName()+" "+eventDTO);
     }
 
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-        sendEvent();
+        System.out.println(eventDTOS);
+
     }
 }
