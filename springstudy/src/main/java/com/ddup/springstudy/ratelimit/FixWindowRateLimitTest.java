@@ -36,10 +36,10 @@ public class FixWindowRateLimitTest {
                 passCount.incrementAndGet();
                 System.out.println("[固定窗口限流] 请求被接受了");
             }
-            redisTemplate.opsForValue().increment(CACHE_KEY);
+            redisTemplate.opsForValue().getAndSet(CACHE_KEY, ++ rate);
             return;
         }
-        redisTemplate.opsForValue().set(CACHE_KEY, 1, 2, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(CACHE_KEY, 1, 1, TimeUnit.SECONDS);
         passCount.incrementAndGet();
         System.out.println("[固定窗口限流] 请求被接受了");
     }
