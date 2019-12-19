@@ -55,6 +55,8 @@ public class CacheBrokenDownTest {
     }
 
     public void executeSolution(CountDownLatch countDownLatch) {
+//        scene();
+//        solution1();
         solution2();
         countDownLatch.countDown();
     }
