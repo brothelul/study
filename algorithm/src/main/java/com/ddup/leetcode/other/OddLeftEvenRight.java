@@ -11,10 +11,26 @@ import java.util.Arrays;
  */
 public class OddLeftEvenRight {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(move(new int[]{1, 2, 3, 4})));
+        System.out.println(Arrays.toString(move(new int[]{1, 2, 7, 6, 3, 4})));
     }
 
     public static int[] move(int[] nums) {
+        if (nums.length < 2) {
+            return nums;
+        }
+        int temp = 0;
+        for (int i = 1; i < nums.length; i++) {
+            int current = nums[i];
+            int before = nums[i - 1];
+            int length = i;
+            while (current %2 == 1 && before % 2 == 0 && length > 1) {
+                temp = nums[length];
+                nums[length] = nums[length - 1];
+                nums[length - 1] = temp;
+                before = nums[length - 2];
+                length--;
+            }
+        }
         return nums;
     }
 }
