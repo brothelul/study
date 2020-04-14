@@ -26,5 +26,6 @@ public class WordSort {
             Pattern pattern = Pattern.compile(currentWord);
             Matcher matcher = pattern.matcher(msg);
         }
+        return false;
     }
 }
