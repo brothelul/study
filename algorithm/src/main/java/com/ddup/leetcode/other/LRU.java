@@ -11,11 +11,12 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class LRU {
     public static void main(String[] args) {
-        Cache<Integer, Integer> cache = new Cache<>(2);
+        Cache<Integer, Integer> cache = new Cache<>(3);
         System.out.println(cache.set(1, 2));
         System.out.println(cache.set(2, 2));
-        System.out.println(cache.get(1));
         System.out.println(cache.set(8, 9));
+        System.out.println(cache.set(6, 9));
+        System.out.println(cache.get(1));
         System.out.println(cache.delete(8));
     }
 }
@@ -61,19 +62,24 @@ class Cache<K, V> {
             if (node.next == null) {
                 tail = node.pre;
                 node.next = head;
+                head.pre = node;
                 head = node;
+                head.pre = null;
                 return true;
             }
             node.pre.next = node.next;
             node.next = head;
             head = node;
+            head.pre = null;
             return true;
         }
         if (length >= maxSize) {
             tail = tail.pre;
             delete(tail.next.key);
+            tail.next = null;
             Link<K, V> current = new Link<>(key, value);
             current.next = head;
+            head.pre = current;
             head = current;
             map.put(key, current);
             return true;
@@ -81,6 +87,9 @@ class Cache<K, V> {
         length++;
         Link<K, V> node = new Link<>(key, value);
         node.next = head;
+        if (length > 1) {
+            head.pre = node;
+        }
         head = node;
         map.put(key, node);
         if (length == 1) {
@@ -104,15 +113,16 @@ class Cache<K, V> {
         map.remove(key);
         if (node.next == null) {
             tail = node.pre;
+            tail.next = null;
             return true;
         }
         if (node.pre == null) {
             head = node.next;
+            head.pre = null;
             return true;
         }
         node.pre.next = node.next;
-        node.next = head;
-        head = node;
+        node.next.pre = node.pre;
         return true;
     }
 
