@@ -1,5 +1,7 @@
 package com.ddup.leetcode.list;
 
+import com.ddup.leetcode.base.ListNode;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -53,22 +55,5 @@ public class Solution {
             current = current.next;
         }
         return result;
-    }
-}
-
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) { this.val = x; }
-
-    @Override
-    public String toString() {
-        ListNode listNode = this;
-        StringBuilder stringBuilder = new StringBuilder();
-        while (Objects.nonNull(listNode.next)) {
-            stringBuilder.append(listNode.val + " => ");
-            listNode = listNode.next;
-        }
-        return stringBuilder.toString();
     }
 }
