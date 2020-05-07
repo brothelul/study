@@ -1,5 +1,8 @@
 package com.ddup.leetcode.other;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <p>
  *     给定一个二叉树，判断其是否是一个有效的二叉搜索树。
@@ -23,10 +26,9 @@ package com.ddup.leetcode.other;
  * @date 2020/5/6
  */
 public class ValidSearchTree {
-    private static boolean valid = true;
     public static void main(String[] args) {
         Tree root = new Tree(8);
-        root.left = new Tree(4);
+        root.left = new Tree(7);
         root.right = new Tree(9);
         root.left.left = new Tree(2);
         root.left.right = new Tree(6);
@@ -34,21 +36,25 @@ public class ValidSearchTree {
     }
 
     public static boolean isValidBST(Tree root) {
-        listTree(root);
-        return valid;
+        List<Integer> treeVals = new ArrayList<>();
+        listTree(root, treeVals);
+        if (treeVals.isEmpty()) {
+            return true;
+        }
+        for (int i = 0; i < treeVals.size()-1; i++) {
+            if (treeVals.get(i) >= treeVals.get(i + 1)) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    private static void listTree(Tree root) {
-        if (root == null || !valid) {
+    private static void listTree(Tree root, List<Integer> treeVals) {
+        if (root == null) {
             return;
         }
-        listTree(root.left);
-        listTree(root.right);
-        if (root.left != null && root.left.val > root.val && valid) {
-            valid = false;
-        }
-        if (root.right != null && root.right.val < root.val && valid) {
-            valid = false;
-        }
+        listTree(root.left, treeVals);
+        treeVals.add(root.val);
+        listTree(root.right, treeVals);
     }
 }
