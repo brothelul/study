@@ -32,18 +32,22 @@ package com.ddup.leetcode.offer;
  */
 public class Q4 {
     public static void main(String[] args) {
-        System.out.println(findNumberIn2DArray(new int[][]{
-                {1,   4,  7, 11, 15},
-                {2,   5,  8, 12, 19},
-                {3,   6,  9, 16, 22},
-                {10, 13, 14, 17, 24},
-                {18, 21, 23, 26, 30}
-                }, 5));
+        System.out.println(findNumberIn2DArray(new int[0][0], 30));
     }
 
     public static boolean findNumberIn2DArray(int[][] matrix, int target) {
-        for (int i = 0; i < matrix.length; i++) {
-            
+        if (matrix.length == 0) {
+            return false;
+        }
+        for (int i = matrix.length - 1; i > -1; i--) {
+            if (matrix[i][0] > target) {
+                continue;
+            }
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] == target) {
+                    return true;
+                }
+            }
         }
         return false;
     }
