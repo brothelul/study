@@ -1,5 +1,9 @@
 package com.ddup.leetcode.offer;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 /**
  * <p>
  *     请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。
@@ -31,14 +35,51 @@ package com.ddup.leetcode.offer;
  * todo 待完成
  */
 public class Q12 {
+//    static Map<String, Object> map = new HashMap<>(16);
+//    static final Object VALUE = new Object();
     public static void main(String[] args) {
         System.out.println(exist(new char[][]{
-                {'A','B','C','E'},
-                {'S','F','C','S'},
-                {'A','D','E','E'}}, "ABCCED"));
+                {'A'},
+                }, "A"));
     }
 
 
     public static boolean exist(char[][] board, String word) {
+        if (word.length() == 0) {
+            return true;
+        }
+        char[] words = word.toCharArray();
+        char first = words[0];
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (first == board[i][j]) {
+                    if (canArrive(board, i, j, 0, words)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+
+    private static boolean canArrive(char[][] board, int i, int j, int lastWord, char[] words) {
+        if (lastWord == words.length) {
+            return true;
+        }
+        if (i == -1 || j == -1 || i == board.length || j == board[0].length) {
+            return false;
+        }
+        if (board[i][j] != words[lastWord]) {
+            return false;
+        }
+        char temp = board[i][j];
+        board[i][j] = '?';
+        boolean result = canArrive(board, i+1, j, lastWord + 1, words) ||
+                canArrive(board, i-1, j, lastWord + 1, words) ||
+                canArrive(board, i, j+1, lastWord + 1, words) ||
+                canArrive(board, i, j-1, lastWord + 1, words);
+        board[i][j] = temp;
+        return result;
     }
 }
