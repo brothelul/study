@@ -24,15 +24,20 @@ package com.ddup.leetcode.offer;
  * 链接：https://leetcode-cn.com/problems/jian-sheng-zi-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  * </p>
- *  动态规划求解
+ *
  * @author chenglu
  * @date 2020/6/7 0007 23:49
  */
 public class Q14 {
     public static void main(String[] args) {
-        System.out.println(cuttingRope(10));
+        System.out.println(cuttingRope1(10));
     }
 
+    /**
+     * 动态规划求解
+     * @param n
+     * @return
+     */
     public static int cuttingRope(int n) {
         if (n < 2) {
             return 0;
@@ -59,5 +64,26 @@ public class Q14 {
             }
         }
         return ropes[n];
+    }
+
+    /**
+     * 贪婪算法求解
+     * @param n
+     * @return
+     */
+    public static int cuttingRope1(int n) {
+        if (n == 2) {
+            return 1;
+        }
+        if (n == 3) {
+            return 2;
+        }
+        int res = 1;
+        while (n > 4) {
+            res *= 3;
+            res %= 1000000007;
+            n -= 3;
+        }
+        return res * n % 1000000007;
     }
 }
