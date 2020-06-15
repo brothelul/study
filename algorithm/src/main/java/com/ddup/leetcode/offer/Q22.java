@@ -29,9 +29,15 @@ public class Q22 {
         head.next.next = new ListNode(3);
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
-        System.out.println(getKthFromEnd(head, 4));
+        System.out.println(getKthFromEnd1(head, 4));
     }
 
+    /**
+     * 通用方法
+     * @param head
+     * @param k
+     * @return
+     */
     public static ListNode getKthFromEnd(ListNode head, int k) {
         if (head == null) {
             return null;
@@ -55,5 +61,51 @@ public class Q22 {
             current = current.next;
         }
         return current;
+    }
+
+    /**
+     * 快慢指针
+     * @param head
+     * @param k
+     * @return
+     */
+    public static ListNode getKthFromEnd1(ListNode head, int k) {
+        int k1 = k, k2 = k;
+        boolean first = true;
+        ListNode l1 = head;
+        ListNode l2 = head;
+        while (l1 != null) {
+            // 走完一次
+            if (k1 == 0) {
+                k1 = k;
+                if (first) {
+                    first = false;
+                    continue;
+                }
+                while (k2 > 0) {
+                    l2 = l2.next;
+                    k2 --;
+                }
+                k2 = k;
+            }
+            l1 = l1.next;
+            k1 --;
+            // 快指针走到尾部
+            if (l1 == null) {
+                // 如果是长度不够那么返回head
+                if (first) {
+                    return head;
+                }
+                if (l2 == head && k1 == k) {
+                    return head;
+                }
+                int step = k - k1;
+                // 如果长度够
+                while (step-- > 0) {
+                    l2 = l2.next;
+                }
+            }
+        }
+        return l2;
     }
 }
