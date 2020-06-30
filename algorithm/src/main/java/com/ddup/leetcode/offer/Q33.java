@@ -41,7 +41,7 @@ package com.ddup.leetcode.offer;
  */
 public class Q33 {
     public static void main(String[] args) {
-        System.out.println(verifyPostorder(new int[] {5, 4, 3, 2, 1}));
+        System.out.println(verifyPostorder(new int[] {1,3,2,5,8,7,6,4}));
     }
 
     public static boolean verifyPostorder(int[] postorder) {
