@@ -47,7 +47,7 @@ public class Q37 {
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
         if (root == null) {
-            return "[null]";
+            return "[]";
         }
         List<List<Integer>> result = new ArrayList<>();
         addTreeNodeToList(root, result, 0);
