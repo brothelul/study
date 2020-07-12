@@ -30,7 +30,7 @@ package com.ddup.leetcode.offer;
  * @author chenglu
  * @date 2020/7/12 0012 23:16
  */
-public class Q42 {
+public class Q43 {
     public static void main(String[] args) {
         System.out.println(countDigitOne(123));
     }
