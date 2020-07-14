@@ -42,7 +42,11 @@ public class Q45 {
     }
 
     public static String minNumber(int[] nums) {
-        nums = Arrays.stream(nums).boxed().sorted(Comparator.comparing(String::valueOf)).toArray();
+        Object[] sortedNums = Arrays.stream(nums).boxed().sorted(Comparator.comparing(String::valueOf)).toArray();
+        String res = "";
+        for (int i = 0; i < sortedNums.length; i++) {
+        }
+        System.out.println(Arrays.toString(sortedNums));
         return "";
     }
 }
