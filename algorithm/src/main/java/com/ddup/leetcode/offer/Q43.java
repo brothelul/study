@@ -32,10 +32,24 @@ package com.ddup.leetcode.offer;
  */
 public class Q43 {
     public static void main(String[] args) {
-        System.out.println(countDigitOne(123));
+        System.out.println(countDigitOne(13));
     }
 
     public static int countDigitOne(int n) {
-
+        int high = n/10, low = 0, digit = 1, current = n % 10, res = 0;
+        while (high != 0 || current != 0) {
+            if (current == 0) {
+                res += digit * high;
+            } else if (current == 1) {
+                res += digit * high + low + 1;
+            } else {
+                res += (high + 1) * digit;
+            }
+            low += current * digit;
+            current = high % 10;
+            high /= 10;
+            digit *= 10;
+        }
+        return res;
     }
 }
