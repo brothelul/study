@@ -1,7 +1,6 @@
 package com.ddup.leetcode.offer;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 /**
  * <p>
@@ -42,11 +41,10 @@ public class Q45 {
     }
 
     public static String minNumber(int[] nums) {
-        Object[] sortedNums = Arrays.stream(nums).boxed().sorted(Comparator.comparing(String::valueOf)).toArray();
-        String res = "";
-        for (int i = 0; i < sortedNums.length; i++) {
-        }
-        System.out.println(Arrays.toString(sortedNums));
-        return "";
+        return Arrays.stream(nums)
+                .boxed()
+                .map(String::valueOf)
+                .sorted((v1, v2) -> (v1 + v2).compareTo(v2 + v1))
+                .reduce((s1, s2) -> s1 + s2).orElse("");
     }
 }
