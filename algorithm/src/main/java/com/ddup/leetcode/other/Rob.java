@@ -36,7 +36,18 @@ public class Rob {
         System.out.println(rob(new int[]{2,7,9,3,1}));
     }
 
+    // dp(n) = Math.max(dp(n-1), dp(n-2) + n)
     public static int rob(int[] nums) {
-
+        int numsLength = nums.length;
+        if (numsLength == 0) {
+            return 0;
+        }
+        int dp_n = 0, dp_n_1 = 0, dp_n_2 = 0;
+        for (int i = 0; i < numsLength; i++) {
+            dp_n = Math.max(dp_n_1, dp_n_2 + nums[i]);
+            dp_n_2 = dp_n_1;
+            dp_n_1 = dp_n;
+        }
+        return dp_n;
     }
 }
